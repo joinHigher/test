@@ -563,6 +563,79 @@ https://blog.csdn.net/lucky_lxg/article/details/70598281#t0
 
 ******************************************************** 
 
+CSDN 博客  https://blog.csdn.net/lucky_lxg
+
+******************************************************** 
+
+学习网站：
+http://www.jqhtml.com/
+
+******************************************************** 
+
+Vue-cli proxyTable解决开发环境的跨域问题
+
+https://www.cnblogs.com/sunsie/p/6898078.html
+
+文件路径： ./htdocs/config/index.js
+
+proxyTable: {
+  '/api': {//这里是我配置的名字
+　　　　 target: 'http://xxx', //这个路径是我代理到本地tp框架里面
+　　　　 changeOrigin: true, //开启代理
+ 　　　　pathRewrite: { '^/api': '/api' }  //这里重写路径/run就代理到对应地址
+
+　　} 
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+obs 项目：
+
+文件路径：./htdocs/config/index.js
+
+dev: {
+    env: require('./dev.env'),
+    port: 8080,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+        '/api-dev': {
+            target: 'http://www.obs.com',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api-dev': ''
+            }
+        }
+    },
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+文件路径：C:\Windows\System32\drivers\etc\hosts
+
+10.33.1.211   www.obs.com
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+文件路径：E:\xampp\apache\conf\extra\httpd-vhosts.conf
+
+<VirtualHost *:80>
+    ServerName www.obs.com
+    ServerAlias *.obs.com
+    DocumentRoot "D:\obs095\htdocs"    
+    <Directory   "D:\obs095\htdocs">
+        Options +Indexes +Includes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require local
+    </Directory>
+</VirtualHost>
+
+
+********************************************************
+
+
+
+
 
 
 
