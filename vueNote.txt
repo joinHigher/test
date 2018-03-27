@@ -402,6 +402,7 @@ http://tools.jb51.net/table/http_status_code
 ***************************************
 
 http 拦截器使用： http://www.jb51.net/article/117807.htm
+                  https://blog.csdn.net/weixin_31765427/article/details/77885199
 
 Vue.http.interceptors.push((req, next) => {
     next(res => {
@@ -553,6 +554,12 @@ getAllCategoryList (arr) {
                 });
             },
 
+
+******************************************************** 
+
+vue-router总结
+
+https://blog.csdn.net/lucky_lxg/article/details/70598281#t0
 
 ******************************************************** 
 
