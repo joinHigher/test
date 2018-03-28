@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7500817-dbee-45d9-b95d-68056b546d7a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vueNote.txt" afterPath="$PROJECT_DIR$/vueNote.txt" />
-    </list>
+    <list default="true" id="d7500817-dbee-45d9-b95d-68056b546d7a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
