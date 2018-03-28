@@ -7,6 +7,11 @@ this.$router.push({
 路由跳转(目标页): 
 let id = this.$route.query.id; //接收参数
 
+
+<router-link :to="{name: 'staticLangPackManage', query: {lang: scope.row.lang}}">
+    <el-button size="small" type="primary">点击跳转到</el-button>
+</router-link>
+
 **************************
 
 当数据改变可能会引起DOM变化是，将数据变化的代码写在 this.$nextTick()中：
@@ -187,17 +192,18 @@ unixFormat (u) {
 
 *****************************************
 
-时间转换成时间戳
-      formatTime (t){
-          if (t) {
+时间转换成时间戳   yyyy-mm-dd hh:mm:ss  => unixTime
+
+      function formatTime (t){
+        if (t) {
             let d = new Date(t);
-            let currentTime = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + (Number(d.getDate()) + 1);
+            let currentTime = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + (Number(d.getDate())) + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
             let unixTime = Date.parse(new Date(currentTime)) / 1000;
             return unixTime;
-          } else {
-              return ""
-          }
-      },
+        } else {
+            return ""
+        }
+    }
 
 ******************************************
 
