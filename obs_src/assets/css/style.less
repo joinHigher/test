@@ -1,0 +1,545 @@
+/**
+ * color variables
+*/
+@color-white: #ffffff;
+@color-dark-white: #f9fafc;
+
+@color-black: #1f2d3d;
+@color-light-black: #324057;
+@color-extra-light-black: #475669;
+
+@color-silver: #8492a6;
+@color-light-silver: #99a9bf;
+@color-extra-light-silver: #c0ccda;
+
+@color-gray: #d3dce6;
+@color-light-gray: #99a9bf;
+@color-extra-light-gray: #eff2f7;
+@color-border-custom-grey: #e0e6ed;
+@color-background-custom-grey: #EFF2F7;
+
+@color-light-blue: #58b7ff;
+@color-blue: #20a0ff;
+@color-dark-blue: #1d8ce0;
+
+@color-success: #13ce66;
+@color-warning: #f7ba2a;
+@color-danger: #ff4949;
+
+/**
+ * initial
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// html {
+//     overflow-y: scroll;
+// }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    width: 100%;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+    color: @color-light-blue;
+}
+
+/**
+ * common
+*/
+.full {
+    width: 100%;
+}
+
+.none {
+    display: none;
+}
+
+.table-a {
+    margin-right: 10px;
+}
+
+/* text align */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* float */
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* font color */
+.color-white {
+    color: @color-white;
+}
+
+.color-dark-white {
+    color: @color-dark-white;
+}
+
+.color-black {
+    color: @color-black;
+}
+
+.color-light-black {
+    color: @color-light-black;
+}
+
+.color-extra-light-black {
+    color: @color-extra-light-black;
+}
+
+.color-silver {
+    color: @color-silver;
+}
+
+.color-light-silver {
+    color: @color-light-silver;
+}
+
+.color-extra-light-silver {
+    color: @color-extra-light-silver;
+}
+
+.color-gray {
+    color: @color-gray;
+}
+
+.color-light-gray {
+    color: @color-light-gray;
+}
+
+.color-extra-light-gray {
+    color: @color-extra-light-gray;
+}
+
+.color-light-blue {
+    color: @color-light-blue;
+}
+
+.color-blue {
+    color: @color-blue;
+}
+
+.color-dark-blue {
+    color: @color-dark-blue;
+}
+
+.color-success {
+    color: @color-success;
+}
+
+.color-warning {
+    color: @color-warning;
+}
+
+.color-danger {
+    color: @color-danger;
+}
+
+
+/* background color */
+.bg-white {
+    background-color: @color-white;
+}
+
+.bg-dark-white {
+    background-color: @color-dark-white;
+}
+
+.bg-black {
+    background-color: @color-black;
+}
+
+.bg-light-black {
+    background-color: @color-light-black;
+}
+
+.bg-extra-light-black {
+    background-color: @color-extra-light-black;
+}
+
+.bg-silver {
+    background-color: @color-silver;
+}
+
+.bg-light-silver {
+    background-color: @color-light-silver;
+}
+
+.bg-extra-light-silver {
+    background-color: @color-extra-light-silver;
+}
+
+.bg-gray {
+    background-color: @color-gray;
+}
+
+.bg-light-gray {
+    background-color: @color-light-gray;
+}
+
+.bg-extra-light-gray {
+    background-color: @color-extra-light-gray;
+}
+
+.bg-light-blue {
+    background-color: @color-light-blue;
+}
+
+.bg-blue {
+    background-color: @color-blue;
+}
+
+.bg-dark-blue {
+    background-color: @color-dark-blue;
+}
+
+.bg-success {
+    background-color: @color-success;
+}
+
+.bg-warning {
+    background-color: @color-warning;
+}
+
+.bg-danger {
+    background-color: @color-danger;
+}
+
+/**
+ * element-ui
+*/
+.el-container {
+    padding: 10px 20px;
+
+    &.top {
+        padding-top: 20px;
+    }
+
+    &.bottom {
+        padding-bottom: 20px;
+    }
+
+    .el-sub-container {
+        padding: 10px 0;
+    }
+}
+
+// left menu
+.el-menu {
+    border-radius: 0;
+
+    a {
+        display: block;
+        color: @color-white;
+    }
+}
+
+.el-submenu .el-menu-item {
+    min-width: 0;
+}
+//
+
+.el-date-editor {
+    width: 100%;
+}
+
+.el-picker-panel {
+    z-index: 9999 !important;
+}
+
+/**
+ * theme
+*/
+.site-header {
+    background-color: #20A0FF;
+    height: 56px;
+    line-height: 56px;
+    color: @color-white;
+
+    .account {
+        display: block;
+        padding-right: 16px;
+        text-align: right;
+        background: #20A0FF;
+        height: 56px;
+        overflow: hidden;
+
+        .sign-out {
+            color: @color-white;
+        }
+    }
+
+    +.el-row>.el-col-21 {
+        float: right;
+    }
+}
+
+.cat-title {
+    position: relative;
+    border-bottom: 1px solid @color-gray;
+    font-size: 18px;
+    line-height: 36px;
+    height: 36px;
+
+    strong {
+        border-bottom: 3px solid @color-blue;
+        line-height: 36px;
+        height: 36px;
+        display: inline-block;
+        position: absolute;
+        bottom: -1px;
+        left: 30px;
+        padding: 0 5px;
+    }
+}
+
+.logo {
+    display: block;
+    background-color: #20A0FF;
+    color: @color-white;
+    text-align: center;
+    height: 56px;
+    line-height: 56px;
+}
+
+.el-message-box {
+    word-break: break-all!important;
+}
+
+i.el-icon-circle-check{
+    &.color-success {
+        font-size: 18px
+    }
+}
+
+i.el-icon-circle-cross{
+    &.color-danger {
+        font-size: 18px
+    }
+}
+
+.table-custom {
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left: 1px solid #e0e6ed;
+    border-spacing: 0px;
+    margin: 0;
+    padding: 0;
+    border-collapse: separate;
+    font-size: 14px;
+    width: 100%;
+
+    th,td {
+        height: 40px;
+        min-width: 0;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        border-bottom: 1px solid @color-border-custom-grey;
+        border-right: 1px solid @color-border-custom-grey;
+        text-align: left;
+        padding: 0 18px;
+    }
+
+    th {
+        overflow: hidden;
+        background-color: @color-background-custom-grey;
+        border-top: 1px solid @color-border-custom-grey;
+    }
+}
+
+table {
+    .el-button {
+
+        &.el-button--small {
+            margin: 5px 0;
+        }
+    }
+
+    .table-img {
+        margin-top: 10px;
+    }
+}
+
+.el-select,.el-autocomplete {
+    width: 100%;
+}
+
+.el-date-editor--datetimerange {
+    max-width: 100%;
+}
+
+.query-input {
+    width: 400px;
+}
+
+.hidden-input {
+    position: absolute;
+    opacity: 0;
+    filter:Alpha(opacity=0);
+}
+
+// searchForm
+.quick-search {
+    width: 600px;
+
+    .el-input-group__prepend {
+        width: 30%;
+    }
+}
+
+// authority css
+.separate-line {
+    text-align: center;
+
+    .line {
+        background: #58B7FF;
+        height: 2px;
+        margin-top: 9px;
+    }
+
+    .role-select {
+        position: relative;
+        top: -8px;
+
+        .el-form-item__content {
+            width: 200px;
+        }
+    }
+}
+
+.role-authority-list {
+
+    .disabled {
+        color: #bbb;
+    }
+
+    .sub {
+        padding-left: 50px;
+        margin-top: 10px;
+    }
+
+    .third {
+        padding-left: 70px;
+    }
+
+    .fourth {
+        padding-left: 90px;
+    }
+}
+
+.menu-list-table {
+
+    .level2 {
+        padding-left: 30px;
+    }
+
+    .level3 {
+        padding-left: 60px;
+    }
+
+    .level4 {
+        padding-left: 90px;
+    }
+
+    .level5 {
+        padding-left: 120px;
+    }
+
+    .level6 {
+        padding-left: 150px;
+    }
+
+    .tree-btn {
+        cursor: pointer;
+
+        i {
+            margin-right: 5px;
+        }
+    }
+
+    .menu-icon-list {
+        font-size: 20px;
+    }
+}
+
+// logistics
+.log-group {
+    .el-dialog {
+        top: 5%!important;
+
+        .el-dialog__body {
+            padding: 20px;
+
+            .el-form-item {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+// notify
+.el-notification__content {
+    word-break:break-all;
+}
+
+// cat tree css
+.custom-tree-item {
+    position: relative;
+
+    .el-form-item__content {
+        width: 400px;
+    }
+
+    .el-tree {
+        height: 300px;
+        overflow-y: auto;
+        position: absolute;
+        top: 72px;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .btn-box {
+        position: absolute;
+        top: 36px;
+        width: 100%;
+        background: #fff;
+        z-index: 10;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+// font awesome
+[class^="el-icon-fa"], [class*=" el-icon-fa"] {
+  font-family:"FontAwesome" !important;
+}
+
+@import url("fontawesome-less/font-awesome");
+
+@fa-css-prefix: el-icon-fa;
