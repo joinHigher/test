@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call</title>
+</head>
+<body>
+
+<script>
+    /*function cat () {}
+
+    cat.prototype = {
+        food: 'fish',
+        say: function () {
+            console.log('I love ' + this.food);
+        },
+    };
+
+    var redCat = new cat;
+    redCat.food = 'mouse';
+    redCat.say();
+
+    var greenCat = new cat;
+    greenCat.say();
+
+    var dog = {
+        food: 'bone'
+    };
+
+    redCat.say.call(dog);*/
+
+    function Phone (name, ver) {
+        this.name = name;
+        this.ver = ver;
+        this.say = function () {
+            console.log(this.name + ' ,  ' + this.ver );
+            console.log(JSON.stringify(this));
+        }
+    }
+
+    var xiaomi = new Phone('xiaomi', 'v1.1.0');
+    xiaomi.say();
+
+    function mobil () {
+        console.log('this is a function mobil');
+        console.log(this);
+    }
+
+    mobil();
+
+
+
+
+
+</script>
+
+</body>
+</html>
