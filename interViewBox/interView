@@ -1,5 +1,11 @@
 js中有六种数据类型，包括五种基本数据类型（Number,String,Boolean,Null,Undefined）,和一种混合数据类型（Object）。
 
+数组的方法: http://www.jb51.net/article/87930.htm
+
+
+字符串的8种方法:
+
+
 有个typeof  用来判断各种数据类型,有两种写法：typeof   xxx   ,typeof(xxx)
 
 http://www.cnblogs.com/a546558309/p/3608194.html
@@ -63,6 +69,21 @@ obj.apply(thisObj, [arg1, arg2, ...]);
 var a = {};var b = []
 Object.prototype.toString.call(a);      // 输出为： "[object Object]"
 Object.prototype.toString.call(a);      // 输出为： "[object Array]"
+
+**************************************************************************
+
+prototype _proto_  constractor 关系
+
+http://www.cnblogs.com/xiaohuochai/p/5721552.html
+
+
+原型  原型链
+
+
+作用域  作用域链
+
+
+事件   事件代理   事件冒泡
 
 
 

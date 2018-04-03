@@ -25,7 +25,7 @@
                 type: String
             },
             show: {
-                default: null,
+                default: false,
                 type: Boolean
             },
             countrysOpt: {
