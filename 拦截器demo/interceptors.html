@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拦截器的使用</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <button @click = "get">get请求</button>
+    <p>{{message}}</p>
+</div>
+<script type="text/javascript">
+    Vue.http.options.emulateJSON = true;
+    new Vue({
+        el:"#app",
+        data:{
+            message:"",
+            TOKEN: 'abcdefg'
+        },
+        mounted:function(){
+            Vue.http.interceptors.push(function(request,next){
+                console.log("正在请求");
+                request.params.passWord = 'aaa';
+                request.headers.set('TOKEN',this.TOKEN);  //在此添加或修改参数
+                next(function(response){
+                    if (response.status === 404) {
+                        alert("网页不存在");
+                        return response;
+                    }
+                    console.log(response.data);
+                    console.log("响应完成")
+                })
+            })
+        },
+        methods:{
+            get:function(){
+                this.$http.get("1.txt",{
+                    params:{
+                        user:"123"
+                    },
+                    headers:{
+                        token:"1234"
+                    }
+                }).then(function(res){
+                    this.message = res.data;
+                },function(err){
+                    this.message = err;
+                })
+            }
+        }
+    })
+</script>
+</body>
+
+</html>

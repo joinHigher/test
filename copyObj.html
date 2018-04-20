@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * 选择复制对象属性的方法  option => params
+     * @type {{name: string, age: number, sex: string}}
+     */
+    let option = {
+        name: 'aaa',
+        age: 23,
+        sex: 'm'
+    };
+
+    let params = {};
+
+    for (let i in option) {
+        if ( i !== 'sex') {
+            params[i] = option[i];
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

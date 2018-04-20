@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--异步 promise 写法-->
+<script>
+    var fun = function () {
+        let p = new Promise((resolve, reject) => {
+            resolve("hello Async hello Async hello Async");
+        });
+        return p;
+    };
+    fun().then(res => {
+        console.log(res);
+    });
+</script>
+
+<!--异步 async 写法-->
+<script>
+    async function fun () {
+        return "111111111hello async hello async hello async"
+    }
+    fun().then(res => {
+        console.log(res);
+    })
+
+</script>
+
+
+
+</body>
+</html>

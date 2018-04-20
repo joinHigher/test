@@ -1,0 +1,757 @@
+路由跳转(发起页): 
+this.$router.push({
+	name: '路由name',
+	query: { id: id }  //传递的参数
+});
+
+路由跳转(目标页): 
+let id = this.$route.query.id; //接收参数
+
+
+<router-link :to="{name: 'staticLangPackManage', query: {lang: scope.row.lang}}">
+    <el-button size="small" type="primary">点击跳转到</el-button>
+</router-link>
+
+**************************
+
+当数据改变可能会引起DOM变化是，将数据变化的代码写在 this.$nextTick()中：
+this.$nextTick(() => {
+	......
+})
+
+**************************
+
+对象数据的使用：
+ platformTexts: {
+                    '1': 'WEB',
+                    '2': 'WAP',
+                    '3': 'IOS',
+                    '4': 'Android'
+                },
+
+ <el-radio-group v-model="filterForm.platform">
+     <el-radio  v-for="(item, key) in platformTexts" :label="key" :key="key">{{item}}</el-radio>
+ </el-radio-group>
+
+ or 
+
+ platformTexts[0]   // WEB
+
+**************************
+
+ vue $refs的基本用法
+
+<div id="app">
+    <input type="text" ref="input1"/>
+    <button @click="add">添加</button>
+</div>
+
+<script>
+new Vue({
+    el: "#app",
+    methods:{
+    add:function(){
+        this.$refs.input1.value ="22"; //this.$refs.input1  减少获取dom节点的消耗
+        }
+    }
+})
+</script>
+
+一般来讲，获取DOM元素，需document.querySelector（".input1"）获取这个dom节点，然后在获取input1的值。
+但是用ref绑定之后，我们就不需要在获取dom节点了，直接在上面的input上绑定input1，然后$refs里面调用就行。
+然后在javascript里面这样调用：this.$refs.input1  这样就可以减少获取dom节点的消耗了
+
+
+https://www.w3cplus.com/vue/accessing-dom-refs.html
+
+
+*********************************
+
+element ui form 表单操作
+
+<el-form :model="form" ref="form">   
+	<el-form-item :prop="sku" label-width="10px" class="form-special-item">
+        <el-input v-model="sku" placeholder="最多添加2个，用英文逗号隔开"></el-input>
+    </el-form-item>
+</el-form>
+
+this.$refs.form.fields.forEach((item) => {   //遍历form表单的每一项 item
+	if (item.$el.classList.contains('form-special-item')) {   //判断 item 中是否包含 form-special-item 的 class
+       item.resetField();    //满足条件，清空该 item 的值
+	}
+})
+
+***********************
+复制一个对象的方法
+
+let obj = JSON.parse(JSON.stringify(opt));  //opt 复制到 obj
+
+*********************
+
+监控数据的变化 watch
+
+watch: {
+	changeData: function (val, oldVal) {   //changeData是被监控的数据，val是改变后的值，oldVal是改变前的值
+		.....do something......
+	}
+}
+
+****************************
+
+点击空白处，下拉菜单隐藏的方法：
+
+<el-form-item label="订单状态" class="order-currency-box">
+                    <el-input readonly @focus="orderStatusFocus" v-model="orderStatusChecked" icon="close"
+                              :on-icon-click="orderStatusHandleIconClick" placeholder="全部"
+                              class="order-currencyBox-show">
+                    </el-input>
+                    <div class="filter-box" v-show="orderStatusBoxShow">
+                        <el-transfer filterable v-model="option.orderStatusUnionList" 
+                                     :titles="['订单状态待选项', '订单状态被选项']"
+                                     :data="orderStatuses">
+                        </el-transfer>
+                        <div class="text-right footer-btn">
+                            <el-button type="primary" @click="orderStatusConfirm">确定</el-button>
+                            <el-button type="danger" @click="orderStatusCancel">取消</el-button>
+                        </div>
+                    </div>
+</el-form-item>
+
+
+body.addEventListener('click', function (e) {
+                let elem = e.target || e.srcElement;
+                while (elem) {
+                    let elemClassName = elem.className;
+                    if (elemClassName && 
+                       ((elemClassName.indexOf('order-currencyBox-show') !== -1) || (elemClassName.indexOf('filter-box') !== -1))
+                       ) {
+                        return false;      //当点击的元素的class为 order-currencyBox-show 或者为 filter-box时，不做任何处理
+                    }
+                    elem = elem.parentNode;
+                }    //当点击的元素的class为 order-currencyBox-show 或者为 filter-box以外的元素时，隐藏下拉菜单
+                that.orderCurrencyBoxShow = false;
+                that.orderStatusBoxShow = false;
+                that.payChannelBoxShow = false;
+                that.getCountrysShow = false;
+                that.courtryPipeBoxShow = false;
+            })
+
+********************************************
+
+时间戳转成 yyyy-mm-dd方法
+
+   unixFormat (u){
+          let t = (new Date(u * 1000));
+          let y = t.getFullYear();
+          let m = t.getMonth() + 1;
+          let d = t.getDate();
+          let gap = '-';
+          if (m<10) {
+              m = '0' + m;
+          }
+          if (d<10) {
+              d = '0' + d;
+          }
+          return y + gap + m + gap + d;
+      },
+
+
+********************************************
+
+时间戳转成 yyyy-mm-dd hh:mm:ss方法
+
+unixFormat (u) {
+                let timeTemp = new Date(u * 1000);
+                let gap1 = '-';
+                let gap2 = ':';
+                let year = timeTemp.getFullYear();
+                let month = timeTemp.getMonth() + 1;
+                let day = timeTemp.getDate();
+                let h = timeTemp.getHours();
+                let m = timeTemp.getMinutes();
+                let s = timeTemp.getSeconds();
+                if (month < 10) {
+                    month = '0' + month;
+                }
+                if (day < 10) {
+                    day = '0' + day;
+                }
+                if (h < 10) {
+                    h = '0' + h;
+                }
+                if (m < 10) {
+                    m = '0' + m;
+                }
+                if (s < 10) {
+                    s = '0' + s;
+                }
+                return year + gap1 + month + gap1 + day + ' ' + h + gap2 + m + gap2 + s;
+            },
+
+
+
+*****************************************
+
+时间转换成时间戳   yyyy-mm-dd hh:mm:ss  => unixTime
+
+      function formatTime (t){
+        if (t) {
+            let d = new Date(t);
+            let currentTime = d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + (Number(d.getDate())) + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+            let unixTime = Date.parse(new Date(currentTime)) / 1000;
+            return unixTime;
+        } else {
+            return ""
+        }
+    }
+
+******************************************
+
+vue中引入jQuery和bootstrap
+
+https://www.cnblogs.com/haimishasha/p/6556410.html
+
+*********************************************
+
+class使用条件
+
+<template scope="scope">
+    <i
+      :class="{'el-icon-circle-check color-success': scope.row.onOff == '1', 'el-icon-circle-cross color-danger': scope.row.onOff == '0'}"
+      @click="changeMemberSwitch(scope.row)">
+    </i>
+</template>
+
+//当 scope.row.onOff = 1 时，使用 el-icon-circle-check color-success；
+//当 scope.row.onOff = 0 时，使用 el-icon-circle-cross color-danger
+
+*********************************************************
+
+Promise.all 使用：
+
+saveSetting () {
+    let promiseInfo1 = this.$http.post('order/index/update-order-setting', settingParams);
+    let promiseInfo2 = this.$http.post('order/index/save-cancel-reason', {reasonList: JSON.stringify(submitList)});
+
+    Promise.all([promiseInfo1, promiseInfo2]).then(([data1, data2]) => {
+        if (data1.body.code === 0 && data2.body.code === 0) {
+            this.$message.success('保存成功!');
+        } else if (data1.body.code !== 0) {
+            this.$message.error(data1.body.message);
+        } else if (data2.body.code !== 0) {
+            this.$message.error(data2.body.message);
+        } else {
+            this.$message.error(data1.body.message + ',' + data2.body.message);
+        }
+    });        
+}
+
+*****************************************************
+
+获得cookie的方法
+
+getCook (name){
+                var strcookie = document.cookie;  //获取cookie字符串
+                var arrcookie = strcookie.split("; ");  //分割
+                for (var i = 0; i < arrcookie.length; i++) {
+                    var arr = arrcookie[i].split("=");
+                    if (arr[0] == name) {
+                        return arr[1];
+                    }
+                }
+                return "";
+    }
+
+
+*****************************************************
+
+冒泡排序法：
+
+function sort(arr) {
+    for (let i=0; i< arr.length - 1; i++) {
+        for (let j=0; j< arr.length - i - 1; j++) {
+            if (arr[j] > arr[j+1]) {
+               let temp = arr[j];
+               arr[j] = arr[j+1];
+               arr[j+1] = temp;
+            }
+        }
+    }    
+}    
+
+
+*************************************************
+
+HTML DOM select() 方法:
+
+select() 方法用于选择该元素中的文本
+
+<html>
+    <head>
+        <script type="text/javascript">
+            function selText()
+              {
+                document.getElementById("txt1").select()
+              }
+            </script>
+        </head>
+    <body>
+
+        <textarea id="txt1">Hello world....</textarea>
+        <input type="button" value="Select text" onclick="selText()">
+
+    </body>
+</html>
+
+***************************************
+
+复制文本到剪切板的方法
+1:定义一个 input标签
+  <input id="txtId" v-model="skus" class="hidden-input">
+
+2:写复制的方法
+
+@click="batchCopySku('txtId')"
+
+batchCopySku (txtId) {
+                let cpt = document.getElementById(txtId);
+                cpt.value = this.skus;  // this.skus是文本信息
+                cpt.select();
+                try {
+                    if (document.execCommand('copy', false, null)) {
+                        this.$message({
+                            type: 'success',
+                            message: '已复制所选SKU'
+                        });
+                    } else {
+                        this.$message({
+                            type: 'warning',
+                            message: '浏览器不可用复制'
+                        });
+                    }
+                } catch (err) {
+                    this.$message.error(err);
+                }
+            },
+
+***************************************
+
+将接口请求写到公共文件中
+
+文件名：common.js
+
+export default function (Vue, options) {
+
+    Vue.prototype.getTemplateList = function (){
+    let templateList = [];
+    this.$http.get('logistics/template/name-list').then(res => {
+        if (res.body.code === 0 && res.body.data) {
+            res.body.data.forEach(item => {
+               templateList.push({id: item.id, name: item.name});
+            });
+        }
+    });
+    return  templateList;
+  };
+
+  vue.prototype.get......    
+}
+
+在其他页面中使用common.js
+
+import Vue from 'vue'
+import common from './common.js'
+Vue.use(common);
+
+...
+let tempList = this.getTemplateList();
+...
+
+***************************************
+
+Map 数据类型
+
+var m = new Map();
+
+m.set(1, 'a');
+
+m.get(1);  // a
+
+m.has(1);  // true
+
+作用：主要用来做数据查找
+
+***************************************
+
+Set 数据类型
+
+var mySet = new Set();
+
+mySet.add(1);
+
+mySet.has(1); //  true or false
+
+mySet.clear;
+
+数组去重：
+
+list: [1, 3, 4 ,1, 3, 4 ],
+
+new Set(list)  //去重  结果 [1, 3, 4]
+
+***************************************
+
+http状态码
+
+http://tools.jb51.net/table/http_status_code
+
+***************************************
+
+http 拦截器使用： http://www.jb51.net/article/117807.htm
+                  https://blog.csdn.net/weixin_31765427/article/details/77885199
+
+Vue.http.interceptors.push((req, next) => {
+    next(res => {
+        if (res.status === 404) {
+            app.$message.error('当前状态404，页面未找到');
+            return res;
+        } else if (res.status !== 200) {
+            app.$message.error(res.body.message);
+            return res;
+        } else {
+            if (res.body.code === 403) {
+                location.href = 'http://' + location.host + '/base/login/logout';
+                return res;
+            } else if (res.body.code === 402) {
+                app.$message.warning(res.body.message);
+                return res;
+            } else {
+                return res;
+            }
+        }
+    });
+});
+
+********************************************************
+
+vue 引入模块的方法
+
+import vue from 'vue'
+import { Mseeage } from 'element-ui'
+
+********************************************************
+
+http post 请求公共方法：
+
+httpPost (url, params) {
+                const defaultErr = '接口错误';
+                let p = new Promise((resolve, reject) => {
+                    vue.http.post(url, params).then(({ body }) => {
+                        const { code, message, data } = body;
+                        if (code === 0) {
+                            resolve(data);
+                        } else {
+                            message ? Message.error(message) : Message.error(defaultErr);
+                            reject(body);
+                        }
+                    }, err => {
+                        err.body && err.body.message ? Message.error(err.body.message) : Message.error(defaultErr);
+                        reject(err);
+                    })
+                });
+                return p;
+            },
+
+********************************************************
+
+调用 http post 请求公共方法:
+
+async  getData () {
+                    this.tableLoading = true;
+                    try {
+                        const data = await this.httpPost('store/store/list', this.option);
+                        this.tableData = data.list;
+                        this.total = data.totalCount;
+                    } finally {
+                        this.tableLoading = false;
+                    }
+                },
+
+
+******************************************************** 
+
+http get 请求公共方法：
+
+httpGet (url, params) {
+                   const defaultErr = '接口错误';
+                   let p = new Promise((resolve, reject) => {
+                       vue.http.get(url, params).then(({ body }) => {
+                           const { code, message, data } = body;
+                           if (code === 0) {
+                               resolve(data);
+                           } else {
+                               message ? Message.error(message) : Message.error(defaultErr);
+                               reject(body);
+                           }
+                       }, err => {
+                           err.body && err.body.message ? Message.error(err.body.message) : Message.error(defaultErr);
+                           reject(err);
+                       });
+                   });
+                   return p;
+               },
+
+******************************************************** 
+
+调用 http get 请求公共方法:
+
+async getData () {
+                   this.tableLoading = true;
+                   try {
+                       const data = await this.httpGet('store/store/list', {params: this.option});
+                       this.tableData = data.list;
+                   } finally {
+                       this.tableLoading = false;
+                   }
+               },
+
+
+******************************************************** 
+
+vue 路由传参 params 与 query 两种方式的区别
+
+https://www.cnblogs.com/lulianlian/p/7682790.html
+
+query要用path来引入，params要用name来引入，接收参数都是类似的，分别是this.$route.query.name和this.$route.params.name。
+
+注意接收参数的时候，已经是$route而不是$router了
+
+
+******************************************************** 
+
+JS 正则表达式
+
+大于0的正整数   /^\+?[1-9]\d*$/
+
+大于0的3位小数  /^0{1}([.]\d{1,3})?$|^[1-9]\d*([.]{1}[0-9]{1,3})?$/
+
+大于0的2位小数  /^0{1}([.]\d{1,2})?$|^[1-9]\d*([.]{1}[0-9]{1,2})?$/
+
+******************************************************** 
+
+去空格
+
+replace(/\ +/g,"")
+
+去换行
+
+replace(/[\r\n]/g,"")
+
+******************************************************** 
+
+递归
+
+getAllCategoryList (arr) {
+                arr.forEach(item => {
+                    this.categoryList.push({ id: item.categoryId, name: item.categoryName });
+                    if (Array.isArray(item.subCategoryList) && item.subCategoryList.length > 0) {
+                        this.getAllCategoryList(item.subCategoryList);
+                    }
+                });
+            },
+
+
+******************************************************** 
+
+vue-router总结
+
+https://blog.csdn.net/lucky_lxg/article/details/70598281#t0
+
+******************************************************** 
+
+CSDN 博客  https://blog.csdn.net/lucky_lxg
+
+******************************************************** 
+
+学习网站：
+http://www.jqhtml.com/
+
+******************************************************** 
+
+Vue-cli proxyTable解决开发环境的跨域问题
+
+https://www.cnblogs.com/sunsie/p/6898078.html
+
+文件路径： ./htdocs/config/index.js
+
+proxyTable: {
+  '/api': {//这里是我配置的名字
+　　　　 target: 'http://xxx', //这个路径是我代理到本地tp框架里面
+　　　　 changeOrigin: true, //开启代理
+ 　　　　pathRewrite: { '^/api': '/api' }  //这里重写路径/run就代理到对应地址
+
+　　} 
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+obs 项目：
+
+文件路径：./htdocs/config/index.js
+
+dev: {
+    env: require('./dev.env'),
+    port: 8080,
+    autoOpenBrowser: true,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+        '/api-dev': {
+            target: 'http://www.obs.com',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api-dev': ''
+            }
+        }
+    },
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+文件路径：C:\Windows\System32\drivers\etc\hosts
+
+10.33.1.211   www.obs.com
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+文件路径：E:\xampp\apache\conf\extra\httpd-vhosts.conf
+
+<VirtualHost *:80>
+    ServerName www.obs.com
+    ServerAlias *.obs.com
+    DocumentRoot "D:\obs095\htdocs"    
+    <Directory   "D:\obs095\htdocs">
+        Options +Indexes +Includes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require local
+    </Directory>
+</VirtualHost>
+
+
+********************************************************
+
+jQuery终止正在发送的ajax请求的方法
+
+<button id="abort">abort</button>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var xhr = $.ajax({
+        type: 'POST',
+        url: '1.txt',
+        data: '',
+        success: function () {
+            console.log("请求成功");
+        }
+    });
+    console.log(xhr);
+
+    $(function () {
+        $("#abort").click(function () {
+            xhr.abort();  //jQuery终止正在发送的ajax请求的方法
+        })
+    })
+</script>
+
+********************************************************
+
+confirm 弹框的方法
+
+ open2() {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示').then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
+
+  等同于
+
+   open2() {
+          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示').then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });
+        }
+   即：this.$message({
+                   type: 'success',
+                   message: '删除成功!'
+                 });  可省略
+
+********************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
