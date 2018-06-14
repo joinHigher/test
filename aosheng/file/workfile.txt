@@ -1,0 +1,50 @@
+谷歌邮箱
+johngreat0915@gmail.com 
+Xuanxuan520
+
+线上 git 账号：
+https://www.gitlab.center/  
+用户名：john，密码：xuanxuan520
+(git@www.gitlab.center:common/www.phpcall.org.git)
+
+www1.gitlab.center
+
+办公网 git 账号：
+www1.gitlab.center/ultron/wiki/blob/master/Gitlab使用教程.md
+用户名：john，密码：xuanxuan520
+
+svn 账号密码：john  3W5cXp7ctFbSs  
+phpcall 项目地址：svn://192.168.0.2/www.phpcall.org
+
+系统登录账号：
+admin  => Admin888
+
+
+网段
+1、工作网
+wifi名称：tplink855
+密码： Aneva@123
+隐藏网络，需要手动添加
+网段：192.168.0.x
+
+2、私人网
+wifi名称：tplink888
+密码： Aneva@123_guest
+网段：192.168.1.x
+
+
+svn 常用操作命令
+
+https://www.cnblogs.com/liwanggui/archive/2016/06/28/5624147.html
+
+
+Linux命令大全
+
+http://man.linuxde.net/sub/目录基本操作
+古风：
+后台账号 admin.  => Admin888
+
+
+potato:
+3549720315 code: 92068 John
+
